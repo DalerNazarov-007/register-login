@@ -54,7 +54,7 @@ const server = http.createServer((req, res) =>{
         })
         req.on("end", async () => {
             try {
-                let {name, password} = JSON.parse(body)
+                 let {name, password} = JSON.parse(body)
                 let users = await fs.readFile("./users.json", "utf-8");
                 let parsedUsers = JSON.parse(users)
                 if(!name || !password){
