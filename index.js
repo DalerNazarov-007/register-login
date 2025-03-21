@@ -21,19 +21,19 @@ const server = http.createServer((req, res) =>{
                     res.writeHead(403, {"content-type":"text/plain"})
                     return res.end("User with this username already exists. Please choose another username!")
                 }if(!hasSymbol){
-                    res.writeHead(201, {"content-type":"text/plain"})
+                    res.writeHead(400, {"content-type":"text/plain"})
                     return res.end("The password should include at least one symbol")
                 } if(!hasUppercase){
-                    res.writeHead(201, {"content-type":"text/plain"})
+                    res.writeHead(400, {"content-type":"text/plain"})
                     return res.end("The password should include at least one uppercase letter")
                 } if(!hasLowercase){
-                    res.writeHead(201, {"content-type":"text/plain"})
+                    res.writeHead(400, {"content-type":"text/plain"})
                     return res.end("The password should include at least one lowercase letter ")
                 } if(!hasNumber){
-                    res.writeHead(201, {"content-type":"text/plain"})
+                    res.writeHead(400, {"content-type":"text/plain"})
                     return res.end("The password should include at least one number")
                 } if(password.length < 5 || password.length > 12){
-                    res.writeHead(201, {"content-type":"text/plain"})
+                    res.writeHead(400, {"content-type":"text/plain"})
                     return res.end("The password should include at least 5 and maximum 12 characters!")
                 }
                 parsedUsers.push({name, password})
@@ -41,7 +41,7 @@ const server = http.createServer((req, res) =>{
                 res.writeHead(201, {"content-type":"text/plain"})
                 return res.end("User successfully registered!")
             } catch (error) {
-                res.writeHead(201, {"content-type":"text/plain"})
+                res.writeHead(500, {"content-type":"text/plain"})
                 return res.end("Internal Server Error!") 
             }
         })
@@ -70,7 +70,7 @@ const server = http.createServer((req, res) =>{
                     return res.end("User successfully logged in!")
                 }
             } catch (error) {
-                res.writeHead(201, {"content-type":"text/plain"})
+                res.writeHead(500, {"content-type":"text/plain"})
                 return res.end("Internal Server Error!") 
             }
     })
